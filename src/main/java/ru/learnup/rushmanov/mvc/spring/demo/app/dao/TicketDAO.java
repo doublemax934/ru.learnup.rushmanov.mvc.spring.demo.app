@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TicketDAO {
 
-    public List<Ticket> getAllTickets(String title);
+    public List<Ticket> getAllTickets(int id);
 
     public void buyTicket(int id, int seatNumber);
 

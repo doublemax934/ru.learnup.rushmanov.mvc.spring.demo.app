@@ -30,7 +30,7 @@
         </c:url>
 
         <c:url var="viewAllTickets" value="/viewAllTickets">
-            <c:param name="perfName" value="${perf.title}"/>
+            <c:param name="perfId" value="${perf.id}"/>
         </c:url>
 
         <tr>

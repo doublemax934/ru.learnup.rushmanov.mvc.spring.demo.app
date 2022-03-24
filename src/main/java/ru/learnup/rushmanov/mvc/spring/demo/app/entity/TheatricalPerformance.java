@@ -28,8 +28,8 @@ public class TheatricalPerformance {
     @Column(name="price_group3")
     private int ticketPrice3;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "theatrical_performance_id")
     private List<Ticket> ticketList = new ArrayList<>();
 
 
@@ -39,7 +39,8 @@ public class TheatricalPerformance {
                                  String ageCategory,
                                  int ticketPrice1,
                                  int ticketPrice2,
-                                 int ticketPrice3) {
+                                 int ticketPrice3,
+                                 Integer theatricalPerformanceId) {
 
         this.title = title;
         this.dateAndTime = dateAndTime;
@@ -49,13 +50,13 @@ public class TheatricalPerformance {
         this.ticketPrice3=ticketPrice3;
         for (int i = 0; i < 10; i ++){
 
-            this.ticketList.add(new Ticket(title, ticketPrice1, (i +1)));
+            this.ticketList.add(new Ticket(title, ticketPrice1, (i +1),null));
         }
         for (int i = 10; i < 20; i ++){
-            this.ticketList.add(new Ticket(title, ticketPrice2, (i +1)));
+            this.ticketList.add(new Ticket(title, ticketPrice2, (i +1),null));
         }
         for (int i =20; i < 30; i ++){
-            this.ticketList.add(new Ticket(title, ticketPrice3,  (i +1)));
+            this.ticketList.add(new Ticket(title, ticketPrice3,  (i +1),null));
         }
         this.numberOfSeats = ticketList.size();
     }
@@ -67,17 +68,17 @@ public class TheatricalPerformance {
 
     public void setTicketList(String title,int ticketPrice1,
                               int ticketPrice2,
-                              int ticketPrice3) {
+                              int ticketPrice3, Integer theatricalPerformanceId) {
 
             for (int i = 0; i < 10; i++) {
 
-                this.ticketList.add(new Ticket(title, ticketPrice1, (i + 1)));
+                this.ticketList.add(new Ticket(title, ticketPrice1, (i + 1),null));
             }
             for (int i = 10; i < 20; i++) {
-                this.ticketList.add(new Ticket(title, ticketPrice2, (i + 1)));
+                this.ticketList.add(new Ticket(title, ticketPrice2, (i + 1),null));
             }
             for (int i = 20; i < 30; i++) {
-                this.ticketList.add(new Ticket(title, ticketPrice3, (i + 1)));
+                this.ticketList.add(new Ticket(title, ticketPrice3, (i + 1),null));
             }
 
         this.numberOfSeats = ticketList.size();

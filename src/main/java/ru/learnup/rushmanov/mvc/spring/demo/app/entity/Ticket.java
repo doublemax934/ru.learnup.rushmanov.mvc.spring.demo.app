@@ -16,15 +16,18 @@ public class Ticket {
     private String status;
     @Column(name="seat_number")
     private  int seatNumber;
+    @Column(name = "theatrical_performance_id")
+    private Integer theatricalPerformanceId;
 
     public Ticket() {
     }
 
-    public Ticket(String ticketTitle, int price, int seatNumber) {
+    public Ticket(String ticketTitle, int price, int seatNumber, Integer theatricalPerformanceId) {
         this.ticketTitle = ticketTitle;
         this.price = price;
         this.status = "on sale";
         this.seatNumber=seatNumber;
+        this.theatricalPerformanceId = null;
     }
 
     public int getPrice() {

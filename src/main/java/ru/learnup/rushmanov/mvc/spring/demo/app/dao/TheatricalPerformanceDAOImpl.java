@@ -27,7 +27,7 @@ public class TheatricalPerformanceDAOImpl implements TheatricalPerformanceDAO{
     public void saveNewPerformance(TheatricalPerformance performance) {
         Session session = sessionFactory.getCurrentSession();
         performance.setTicketList(performance.getTitle(),performance.getTicketPrice1(),
-                performance.getTicketPrice2(), performance.getTicketPrice3());
+                performance.getTicketPrice2(), performance.getTicketPrice3(), null);
         session.saveOrUpdate (performance);
     }
 

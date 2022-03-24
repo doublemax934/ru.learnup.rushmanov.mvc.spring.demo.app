@@ -14,11 +14,11 @@ public class TicketDAOImpl implements TicketDAO{
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Ticket> getAllTickets(String title) {
+    public List<Ticket> getAllTickets(int id) {
         Session session = sessionFactory.getCurrentSession();
         List<Ticket> allTickets = session.createQuery("from Ticket " +
-                        "where ticketTitle =:title")
-                .setParameter("title", title)
+                        "where theatricalPerformanceId =:ID")
+                .setParameter("ID", id)
                 .getResultList();
 
         return allTickets;
