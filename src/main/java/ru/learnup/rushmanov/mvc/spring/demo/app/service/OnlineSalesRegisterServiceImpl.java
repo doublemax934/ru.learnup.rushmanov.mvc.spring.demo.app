@@ -2,16 +2,21 @@ package ru.learnup.rushmanov.mvc.spring.demo.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import ru.learnup.rushmanov.mvc.spring.demo.app.entity.TheatricalPerformance;
 import ru.learnup.rushmanov.mvc.spring.demo.app.entity.Ticket;
 import ru.learnup.rushmanov.mvc.spring.demo.app.dao.TheatricalPerformanceDAO;
 import ru.learnup.rushmanov.mvc.spring.demo.app.dao.TicketDAO;
 
 import javax.transaction.Transactional;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import static java.awt.GraphicsConfigTemplate.REQUIRED;
+
 @Service
-public class OnlineSalesRegisterServiceImpl implements OnlineSalesRegisterService{
+public class OnlineSalesRegisterServiceImpl implements OnlineSalesRegisterService {
     @Autowired
     private TheatricalPerformanceDAO theatricalPerformanceDAO;
     @Autowired
@@ -26,12 +31,11 @@ public class OnlineSalesRegisterServiceImpl implements OnlineSalesRegisterServic
     @Override
     @Transactional
     public void saveNewPerformance(TheatricalPerformance performance) {
-
         theatricalPerformanceDAO.saveNewPerformance(performance);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public TheatricalPerformance getPerformance(int id) {
         return theatricalPerformanceDAO.getPerfofmance(id);
     }

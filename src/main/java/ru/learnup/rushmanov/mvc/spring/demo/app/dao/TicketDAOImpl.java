@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.learnup.rushmanov.mvc.spring.demo.app.entity.Ticket;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 @Repository
